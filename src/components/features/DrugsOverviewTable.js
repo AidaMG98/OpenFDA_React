@@ -1,11 +1,12 @@
 import React from 'react';
-import { TableCell, TableRow, Link } from '@mui/material';
+import { TableCell, TableRow } from '@mui/material';
 import {getDataDrugsNDC} from '../../services/apiService';
 import BasicModal from '../layout/Modal'
 
 const data = await getDataDrugsNDC();
 
 function DrugOverview() {
+  console.log(data)
   return (
     data.map((row) => (
       <TableRow
@@ -16,7 +17,7 @@ function DrugOverview() {
         <TableCell align="center">{row.generic_name}</TableCell>
         <TableCell align="center">{row.labeler_name}</TableCell>
         <TableCell align="center">{row.brand_name}</TableCell>
-        <TableCell><BasicModal/></TableCell>
+        <TableCell><BasicModal product_ndc={row.product_ndc}/></TableCell>
       </TableRow>
     ))
   )
@@ -24,6 +25,7 @@ function DrugOverview() {
 
 
 function DrugOverviewCOPY() {
+ 
   return (
     data.map((row) => (
       <TableRow
