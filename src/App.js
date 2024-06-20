@@ -4,14 +4,15 @@ import './App.css';
 import Header from './components/layout/Header';
 import Main from './components/layout/Main';
 import Footer from './components/layout/Footer';
+import {Box} from '@mui/material';
 
 function App() {
   return (
-    <div>
+    <Box>
       <Header />
       <Main />
       <Footer />
-    </div>
+    </Box>
   );
 }
 
