@@ -21,12 +21,18 @@ export const getDataDrugs = async () => {
   }
 };
 
-export const getDataDrugsNDC = async (ndcCode = '') => {
+export const getDataDrugsNDC = async (ndcCode = '', generic_name='') => {
   try {
     let response = '';
+
+    if(generic_name !== '') {
+      response = await fetch(`${API_DRUG_NDC_URL}` + 'search=generic_name:"' + generic_name) + '"';
+    } else{
+      response = await fetch(`${API_DRUG_NDC_URL}`+ "&limit=" + LIMIT);
+    }
     
     if(ndcCode !== '') {
-      response = await fetch(`${API_DRUG_NDC_URL}` + 'search=product_ndc:"' + ndcCode);     
+      response = await fetch(`${API_DRUG_NDC_URL}` + 'search=product_ndc:"' + ndcCode + '"');     
     } else{
       response = await fetch(`${API_DRUG_NDC_URL}`+ "&limit=" + LIMIT);
     }

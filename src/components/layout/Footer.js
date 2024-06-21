@@ -12,7 +12,7 @@ function Footer() {
       textAlign={"center"}
       mt={3}
     >
-      <Typography>Sigueme para más:</Typography>
+      <Typography>Follow me for more:</Typography>
 
       <Box p={2}>
         <Link href="https://www.linkedin.com/in/aidamg/" p={4} >

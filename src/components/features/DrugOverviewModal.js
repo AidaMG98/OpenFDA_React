@@ -17,7 +17,7 @@ const style = {
 
 const element = await document.getElementsByClassName("drugId").value;
 console.log(element);
-const data = await getDataDrugsNDC("73154-130");
+//const data = await getDataDrugsNDC("73154-130");
 
 const DrugOverviewModal = (x) => {
   let data3 = getDataDrugsNDC(x);
