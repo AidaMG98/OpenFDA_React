@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paper, Table, TableBody, TableContainer, TableHead, TablePagination, TableRow, TableFooter, TableCell,tableCellClasses, styled } from '@mui/material';
-import DrugOverview from '../features/DrugsOverviewTable';
+import DrugOverview from '../components/features/DrugsOverviewTable';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -26,7 +26,7 @@ function MyTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            <DrugOverview />
+            <DrugOverview/>
           </TableBody>
           <TableFooter>
             <TableRow>

@@ -1,12 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { TableCell, TableRow, Link } from '@mui/material';
 import { getDataDrugsNDC } from '../../services/apiService';
-import BasicModal from '../layout/Modal'
-import { DrugInfo } from '../layout/DrugInfo';
+import BasicModal from '../../pages/Modal'
+import { DrugInfo } from '../../pages/DrugInfo';
 
-const data = await getDataDrugsNDC();
+const search = sessionStorage.getItem('search');
+
 
 function DrugOverview() {
+  
+  const [data, setData] = useState([]);
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let result = await getDataDrugsNDC('', search);
+        setData(result);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+
+    fetchData();
+  }, [search]);
+
+  
+
+  return (
+    data.map((row) => ( 
+      <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+        <TableCell component="th" scope="row"><Link onClick={DrugInfo}>{row.product_ndc}</Link></TableCell>
+        <TableCell align="center">{row.generic_name}</TableCell>
+        <TableCell align="center">{row.labeler_name}</TableCell>
+        <TableCell align="center">{row.brand_name}</TableCell>
+        <TableCell><BasicModal product_ndc={row.product_ndc}/></TableCell>
+      </TableRow>
+    )
+  )
+  )
+}
+
+
+
+function DrugOverviewCopy() {
+  
+  let data =  getDataDrugsNDC();
+
+  let search = sessionStorage.getItem('search');
+
+  if(search){
+    data = getDataDrugsNDC("",  search && search.length < 0 ? search : 0);
+    console.log(data);
+  }
+  
+
   return (
     data.map((row) => (
       <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -19,34 +66,5 @@ function DrugOverview() {
     ))
   )
 }
-
-
-function DrugOverviewCOPY() {
-
-  return (
-    data.map((row) => (
-      <TableRow
-        key={row.application_number}
-        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-      >
-        <TableCell component="th" scope="row">
-          {row.application_number}
-        </TableCell>
-
-        <TableCell align="center">{row.sponsor_name}</TableCell>
-        <TableCell align="center">{row.submissions && row.submissions.length > 0 ? row.submissions[0].submission_status_date : 0}</TableCell>
-        <TableCell align="center">{row.submissions && row.submissions.length > 0 ? row.submissions[0].review_priority : ""}</TableCell>
-        <TableCell align="center">{row.submissions && row.submissions.length > 0 ? row.submissions[0].submission_type : "N/A"}</TableCell>
-        <TableCell align="center">{row.submissions && row.submissions.length > 0 ? row.submissions[0].submission_status : ""}</TableCell>
-
-        <TableCell>{row.products && row.products.length > 0 ? row.products.length : 0}</TableCell>
-
-        <TableCell></TableCell>
-      </TableRow>
-    ))
-  )
-}
-
-
 
 export default DrugOverview

@@ -10,7 +10,7 @@ function Main () {
 
    useEffect(() => {
     const fetchResults = async () => {
-      if (query.length > 120) { // Limitar la búsqueda a consultas mayores a 2 caracteres
+      if (query.length > 120) {
         const response = getDataDrugsNDC('', query);
         setResults(response.results);
       } else {
@@ -25,7 +25,7 @@ function Main () {
   return (
     <Box>
       <SearchInput setQuery={setQuery}/>
-      <DrugTable results={results} />
+      <DrugTable/>
     </Box>
   );
 }

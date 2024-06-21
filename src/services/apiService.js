@@ -25,22 +25,21 @@ export const getDataDrugsNDC = async (ndcCode = '', generic_name='') => {
   try {
     let response = '';
 
-    if(generic_name !== '') {
-      response = await fetch(`${API_DRUG_NDC_URL}` + 'search=generic_name:"' + generic_name) + '"';
+    if(generic_name) {
+      response = await fetch(`${API_DRUG_NDC_URL}search=generic_name:'${generic_name}'`);      
+    } else if(ndcCode) {
+      response = await fetch(`${API_DRUG_NDC_URL}search=product_ndc:"${ndcCode}"`);     
     } else{
       response = await fetch(`${API_DRUG_NDC_URL}`+ "&limit=" + LIMIT);
     }
+   
+    console.log(response);
     
-    if(ndcCode !== '') {
-      response = await fetch(`${API_DRUG_NDC_URL}` + 'search=product_ndc:"' + ndcCode + '"');     
-    } else{
-      response = await fetch(`${API_DRUG_NDC_URL}`+ "&limit=" + LIMIT);
-    }
-
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const data = await response.json();
+    
     return (data.results);
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);

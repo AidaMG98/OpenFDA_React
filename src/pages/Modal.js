@@ -1,9 +1,10 @@
 import React from 'react';
 import {Box, Button, Modal } from '@mui/material';
-import DrugOverviewModal from '../features/DrugOverviewModal';
+import DrugOverviewModal from '../components/features/DrugOverviewModal';
 
 
-function BasicModal(drugId) {
+function BasicModal(id) {
+  
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);  
@@ -13,8 +14,9 @@ function BasicModal(drugId) {
       <Modal
         open={open}
         onClose={handleClose}
+        value={id}
       >
-      <DrugOverviewModal drugId={drugId}/>
+      <DrugOverviewModal id={id}/>
       </Modal>
     </Box>
   );
