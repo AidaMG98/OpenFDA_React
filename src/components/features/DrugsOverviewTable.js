@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TableCell, TableRow, Link } from '@mui/material';
 import { getDataDrugsNDC } from '../../services/apiService';
-import BasicModal from '../../pages/Modal'
+import BasicModal from '../../pages/Modal';
 import { DrugInfo } from '../../pages/DrugInfo';
 
 const search = sessionStorage.getItem('search');
