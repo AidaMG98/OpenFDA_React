@@ -9,16 +9,7 @@ const API_DRUG_DRUGSFDA_URL = 'https://api.fda.gov/drug/drugsfda.json?';
 const API_DRUG_ENFORCEMENT_URL = 'https://api.fda.gov/drug/enforcement.json?';
 
 export const getDataDrugs = async () => {
-  try {
-    const response = await fetch(`${API_DRUG_DRUGSFDA_URL}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return (data.results);
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
+  return API_DRUG_DRUGSFDA_URL
 };
 
 export const getDataDrugsNDC = async (ndcCode = '', generic_name='') => {
@@ -32,9 +23,7 @@ export const getDataDrugsNDC = async (ndcCode = '', generic_name='') => {
     } else{
       response = await fetch(`${API_DRUG_NDC_URL}`+ "&limit=" + LIMIT);
     }
-   
-    console.log(response);
-    
+      
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -48,41 +37,14 @@ export const getDataDrugsNDC = async (ndcCode = '', generic_name='') => {
 
 
 export const getDataDrugsEvent = async () => {
-  try {
-    const response = await fetch(`${API_DRUG_EVENT_URL}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return (data.results);
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
+  return  API_DRUG_EVENT_URL
 };
 
 
 export const getDataDrugsLabel = async () => {
-  try {
-    const response = await fetch(`${API_DRUG_LABEL_URL}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return (data.results);
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
+  return API_DRUG_LABEL_URL
 };
 
 export const getDataDrugsEnforcement = async () => {
-  try {
-    const response = await fetch(`${API_DRUG_ENFORCEMENT_URL}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return (data.results);
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
+  return API_DRUG_ENFORCEMENT_URL
 };

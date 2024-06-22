@@ -35,14 +35,11 @@ const DrugOverviewModal = (x) => {
     fetchData();
   }, []);
 
-
-  console.log(data);
-
   return (
     <Box sx={style}>
 
       <Typography id="modal-modal-title" variant="h6" component="h2">
-        Drug information {x.id.product_ndc}
+        Drug information {data.length > 0 ? data[0].product_ndc : ""}
       </Typography>
 
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>

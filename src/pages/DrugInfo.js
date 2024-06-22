@@ -1,29 +1,24 @@
 import React from 'react';
+import '../App.css';
+
 import { Box } from '@mui/material';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
-import ReactDOM from 'react-dom';
+import DrugOverviewModal from '../components/features/DrugOverviewModal';
 
-import { getDataDrugsNDC } from '../services/apiService';
+function DrugInfo(x) {
+    //let head = document.head.cloneNode(true);
+    //document.createElement('div').document.head.innerHTML = head.innerHTML;
 
-const data = await getDataDrugsNDC("73154-130");
+    return (
+        <React.StrictMode>
+            <Box>
+                <Header />
+                <DrugOverviewModal id={x} />
+                <Footer />
+            </Box>
+        </React.StrictMode>
+    )
+}
 
-export const DrugInfo = () => {
-    const newWindow = window.open();
-    newWindow.document.write('<div id="newWindow"></div>');
-    const rootElement = newWindow.document.getElementById('newWindow');
-
-    window.addEventListener("DOMContentLoaded", function (e) {
-        const root = ReactDOM.createRoot(rootElement);
-        root.render(
-            <React.StrictMode>
-                <Box>
-                    <Header/>
-
-                    <Footer/>
-                </Box>
-            </React.StrictMode>
-        );
-    });
- 
-}  
+export default DrugInfo;
